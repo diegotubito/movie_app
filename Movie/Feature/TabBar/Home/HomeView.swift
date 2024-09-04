@@ -8,27 +8,31 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var coordinator: Coordinator<HomeScreen>
     @StateObject var viewmodel: HomeViewModel
-    
+
     var body: some View {
-        NavigationStack(path: $coordinator.path) {
-            VStack {
-                Button("navigate to detail view") {
-                    coordinator.push(.detail)
-                }
+        VStack {
+            if let imageData = viewmodel.posterImage, let uiImage = UIImage(data: imageData) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 300)
+            } else {
+                ProgressView() // Show loading indicator
+                    .frame(width: 200, height: 300)
             }
-            .navigationDestination(for: HomeScreen.self) { screen in
-                switch screen {
-                case .detail:
-                    DetailView()
-                }
-            }
+        }
+        .onAppear {
+            viewmodel.fetchPopular() // Fetch movies and images when view appears
         }
     }
 }
 
-#Preview {
-    HomeView(viewmodel: HomeViewModel())
-          .environmentObject(Coordinator<HomeScreen>())
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView(viewmodel: HomeViewModel(
+            fetchPopularUseCase: FetchPopularUseCase(repository: MovieRepository()),
+            fetchPosterUseCase: FetchPosterUseCase(repository: MovieRepository())
+        ))
+    }
 }

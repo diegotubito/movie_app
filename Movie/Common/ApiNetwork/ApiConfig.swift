@@ -4,7 +4,6 @@
 //
 //  Created by David Diego Gomez on 04/09/2024.
 //
-
 import Foundation
 
 public struct ApiRequestConfiguration {
@@ -13,6 +12,7 @@ public struct ApiRequestConfiguration {
     public var body: Data? = nil
     public var headers: [String: String] = [:]
     public var queryItems: [QueryModel] = []
+    public var serverType: ServerType = .api // Default to API server
 
     public struct QueryModel {
         var key: String
@@ -27,10 +27,23 @@ public struct ApiRequestConfiguration {
         case patch = "PATCH"
     }
     
-    // Fetch base URL from the app's Info.plist
+    public enum ServerType {
+        case api
+        case image
+    }
+
+    // Fetch the correct base URL from the Info.plist based on the server type
     func getHost() -> String {
-        guard let serverURL = Bundle.main.object(forInfoDictionaryKey: "ServerUrl") as? String else {
-            fatalError("Server URL not found in Info.plist")
+        let key: String
+        switch serverType {
+        case .api:
+            key = "ApiServerUrl"
+        case .image:
+            key = "ImageServerUrl"
+        }
+
+        guard let serverURL = Bundle.main.object(forInfoDictionaryKey: key) as? String else {
+            fatalError("Server URL for \(serverType) not found in Info.plist")
         }
         return serverURL
     }

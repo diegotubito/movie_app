@@ -2,7 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ServerUrl</key>
+	<key>ApiServerUrl</key>
 	<string>https://api.themoviedb.org</string>
+	<key>ImageServerUrl</key>
+	<string>https://image.tmdb.org</string>
 </dict>
 </plist>
