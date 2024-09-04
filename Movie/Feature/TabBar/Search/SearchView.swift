@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct SearchView: View {
+    @StateObject var viewmodel: SearchViewModel
+    
     var body: some View {
         Text("Search View")
     }
 }
 
 #Preview {
-    SearchView()
+    SearchView(viewmodel: SearchViewModel())
 }

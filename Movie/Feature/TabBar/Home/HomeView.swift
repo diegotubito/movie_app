@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var coordinator: Coordinator<HomeScreen>
+    @StateObject var viewmodel: HomeViewModel
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
@@ -28,6 +29,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewmodel: HomeViewModel())
           .environmentObject(Coordinator<HomeScreen>())
 }

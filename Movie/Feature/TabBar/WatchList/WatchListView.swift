@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct WatchListView: View {
+    @StateObject var viewmodel: WatchListViewModel
+    
     var body: some View {
         Text("Watch List View")
     }
 }
 
 #Preview {
-    WatchListView()
+    WatchListView(viewmodel: WatchListViewModel())
 }

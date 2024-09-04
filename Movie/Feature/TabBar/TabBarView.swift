@@ -17,7 +17,7 @@ struct TabBarView: View {
     var body: some View {
         ZStack {
             TabView(selection: $tabBarManager.selectedTab) {
-                HomeView()
+                HomeView(viewmodel: HomeViewModel())
                     .frame(maxHeight: .infinity)
                     .tabItem {
                         Label("Home", systemImage: "house")
@@ -25,14 +25,14 @@ struct TabBarView: View {
                     .tag(TabBarViewModel.Tab.home)
                 
                 
-                SearchView()
+                SearchView(viewmodel: SearchViewModel())
                     .frame(maxHeight: .infinity)
                     .tabItem {
                         Label("Search", systemImage: "magnifyingglass")
                     }
                     .tag((TabBarViewModel.Tab.search))
                 
-                WatchListView()
+                WatchListView(viewmodel: WatchListViewModel())
                     .frame(maxHeight: .infinity)
                     .tabItem {
                         Label("Watch List", systemImage: "gear")
