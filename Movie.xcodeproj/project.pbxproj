@@ -30,6 +30,9 @@
 		F14D2E8D2C88D5DC0039AC17 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E8C2C88D5DC0039AC17 /* SearchViewModel.swift */; };
 		F14D2E8F2C88D6380039AC17 /* WatchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E8E2C88D6380039AC17 /* WatchListViewModel.swift */; };
 		F14D2E912C88D65F0039AC17 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E902C88D65F0039AC17 /* HomeViewModel.swift */; };
+		F14D2E942C88D7070039AC17 /* ApiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E932C88D7070039AC17 /* ApiNetwork.swift */; };
+		F14D2E962C88D7240039AC17 /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E952C88D7240039AC17 /* ApiConfig.swift */; };
+		F14D2E982C88D7420039AC17 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E972C88D7420039AC17 /* ApiError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,10 @@
 		F14D2E8C2C88D5DC0039AC17 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		F14D2E8E2C88D6380039AC17 /* WatchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewModel.swift; sourceTree = "<group>"; };
 		F14D2E902C88D65F0039AC17 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F14D2E932C88D7070039AC17 /* ApiNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiNetwork.swift; sourceTree = "<group>"; };
+		F14D2E952C88D7240039AC17 /* ApiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
+		F14D2E972C88D7420039AC17 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		F14D2E992C88DA160039AC17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +133,7 @@
 		F14D2E3C2C88C39A0039AC17 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
+				F14D2E992C88DA160039AC17 /* Info.plist */,
 				F14D2E3D2C88C39A0039AC17 /* MovieApp.swift */,
 				F14D2E672C88C6DC0039AC17 /* Common */,
 				F14D2E692C88C6ED0039AC17 /* Resources */,
@@ -162,6 +170,7 @@
 		F14D2E672C88C6DC0039AC17 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F14D2E922C88D6E10039AC17 /* ApiNetwork */,
 				F14D2E822C88CC400039AC17 /* Extensions */,
 				F14D2E732C88C8980039AC17 /* Coordinator */,
 			);
@@ -261,6 +270,16 @@
 				F14D2E882C88D2A30039AC17 /* DetailView.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		F14D2E922C88D6E10039AC17 /* ApiNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				F14D2E932C88D7070039AC17 /* ApiNetwork.swift */,
+				F14D2E952C88D7240039AC17 /* ApiConfig.swift */,
+				F14D2E972C88D7420039AC17 /* ApiError.swift */,
+			);
+			path = ApiNetwork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,6 +414,7 @@
 			files = (
 				F14D2E8B2C88D3610039AC17 /* SplashViewModel.swift in Sources */,
 				F14D2E912C88D65F0039AC17 /* HomeViewModel.swift in Sources */,
+				F14D2E942C88D7070039AC17 /* ApiNetwork.swift in Sources */,
 				F14D2E722C88C7BA0039AC17 /* TabBarViewModel.swift in Sources */,
 				F14D2E8D2C88D5DC0039AC17 /* SearchViewModel.swift in Sources */,
 				F14D2E7D2C88CA020039AC17 /* WatchListView.swift in Sources */,
@@ -402,9 +422,11 @@
 				F14D2E892C88D2A30039AC17 /* DetailView.swift in Sources */,
 				F14D2E792C88C9720039AC17 /* HomeView.swift in Sources */,
 				F14D2E402C88C39A0039AC17 /* SplashView.swift in Sources */,
+				F14D2E962C88D7240039AC17 /* ApiConfig.swift in Sources */,
 				F14D2E752C88C89F0039AC17 /* Coordinator.swift in Sources */,
 				F14D2E7B2C88C9F50039AC17 /* SearchView.swift in Sources */,
 				F14D2E8F2C88D6380039AC17 /* WatchListViewModel.swift in Sources */,
+				F14D2E982C88D7420039AC17 /* ApiError.swift in Sources */,
 				F14D2E842C88CC470039AC17 /* Color+Extension.swift in Sources */,
 				F14D2E7F2C88CA8E0039AC17 /* WatchListCoordinator.swift in Sources */,
 				F14D2E702C88C7780039AC17 /* TabBarView.swift in Sources */,
@@ -577,6 +599,7 @@
 				DEVELOPMENT_TEAM = S2BEC8V882;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Movie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -606,6 +629,7 @@
 				DEVELOPMENT_TEAM = S2BEC8V882;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Movie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
