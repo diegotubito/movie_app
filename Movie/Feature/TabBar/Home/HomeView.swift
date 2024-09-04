@@ -18,21 +18,18 @@ struct HomeView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 300)
             } else {
-                ProgressView() // Show loading indicator
+                ProgressView()
                     .frame(width: 200, height: 300)
             }
         }
         .onAppear {
-            viewmodel.fetchPopular() // Fetch movies and images when view appears
+            viewmodel.fetchPopular() 
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewmodel: HomeViewModel(
-            fetchPopularUseCase: FetchPopularUseCase(repository: MovieRepository()),
-            fetchPosterUseCase: FetchPosterUseCase(repository: MovieRepository())
-        ))
+        HomeView(viewmodel: HomeViewModel())
     }
 }

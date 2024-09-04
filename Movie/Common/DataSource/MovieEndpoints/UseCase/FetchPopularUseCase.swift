@@ -15,7 +15,7 @@ protocol FetchPopularUseCaseProtocol {
 class FetchPopularUseCase: FetchPopularUseCaseProtocol {
     var repository: MovieRepositoryProtocol
     
-    required init(repository: any MovieRepositoryProtocol) {
+    required init(repository: MovieRepositoryProtocol = MoviewRepositoryFactory.create()) {
         self.repository = repository
     }
     

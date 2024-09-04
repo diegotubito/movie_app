@@ -29,3 +29,20 @@ class MovieRepository: ApiNetwork, MovieRepositoryProtocol {
         return try await apiCall()
     }
 }
+
+class MovieRepositoryMock: ApiNetworkMock, MovieRepositoryProtocol {
+    func fetchPopularMovies(request: PopularEntity.Request) async throws -> PopularEntity.Response {
+        mockFileName = "popular_mock_success_response"
+        return try await apiCallMocked(bundle: .main)
+    }
+    
+    func fetchMoviePoster(request: PosterEntity.Request) async throws -> Data {
+        return try await apiCallMocked(bundle: .main)
+    }
+}
+
+class MoviewRepositoryFactory {
+    static func create() -> MovieRepositoryProtocol {
+        return MovieRepository()
+    }
+}

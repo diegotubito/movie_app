@@ -15,9 +15,4 @@ struct PopularEntity {
     }
 }
 
-struct PosterEntity {
-    struct Request: Encodable {
-        let path: String
-    }
-  
-}
+

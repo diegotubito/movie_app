@@ -15,7 +15,7 @@ protocol FetchPosterUseCaseProtocol {
 class FetchPosterUseCase: FetchPosterUseCaseProtocol {
     var repository: MovieRepositoryProtocol
     
-    required init(repository: any MovieRepositoryProtocol) {
+    required init(repository: MovieRepositoryProtocol = MoviewRepositoryFactory.create()) {
         self.repository = repository
     }
     

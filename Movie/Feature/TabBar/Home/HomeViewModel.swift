@@ -11,11 +11,11 @@ class HomeViewModel: ObservableObject {
     let fetchPopularUseCase: FetchPopularUseCaseProtocol
     let fetchPosterUseCase: FetchPosterUseCaseProtocol
 
-    @Published var posterImage: Data? = nil // Published property to store image data
+    @Published var posterImage: Data? = nil
 
-    init(fetchPopularUseCase: FetchPopularUseCaseProtocol, fetchPosterUseCase: FetchPosterUseCaseProtocol) {
-        self.fetchPopularUseCase = fetchPopularUseCase
-        self.fetchPosterUseCase = fetchPosterUseCase
+    init() {
+        self.fetchPopularUseCase = FetchPopularUseCase()
+        self.fetchPosterUseCase = FetchPosterUseCase()
     }
 
     @MainActor
@@ -25,11 +25,13 @@ class HomeViewModel: ObservableObject {
                 let response = try await fetchPopularUseCase.excecute()
                 print(response)
                 
-                // Load the poster for the first movie in the response (for example)
                 if let firstMovie = response.results.first {
                     await fetchPoster(for: firstMovie.posterPath)
                 }
             } catch {
+                if let error = error as? APIError {
+                    print(error.message)
+                }
                 print(error.localizedDescription)
             }
         }
@@ -42,6 +44,7 @@ class HomeViewModel: ObservableObject {
                 let posterResponse = try await fetchPosterUseCase.excecute(path: path)
                 self.posterImage = posterResponse
             } catch {
+                self.posterImage = nil
                 print("Error fetching poster: \(error.localizedDescription)")
             }
         }

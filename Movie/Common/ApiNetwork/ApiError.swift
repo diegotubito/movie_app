@@ -15,6 +15,8 @@ public enum APIError: Error, CustomStringConvertible, Equatable {
     case serverError(message: String)
     case notAuthorized
     case customError(message: String?)
+    case serialization
+    case mockFailed
     
     public var code: Int {
         switch self {
@@ -33,6 +35,10 @@ public enum APIError: Error, CustomStringConvertible, Equatable {
         case .notAuthorized:
             return 403
         case .customError:
+            return 400
+        case .serialization:
+            return 400
+        case .mockFailed:
             return 400
         }
     }
@@ -55,6 +61,10 @@ public enum APIError: Error, CustomStringConvertible, Equatable {
             return "Not Authorized"
         case .customError(let message):
             return message ?? "An error occurred"
+        case .serialization:
+            return "Serialization Error"
+        case .mockFailed:
+            return "Serialization Error"
         }
     }
 

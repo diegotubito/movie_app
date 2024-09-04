@@ -17,8 +17,7 @@ struct TabBarView: View {
     var body: some View {
         ZStack {
             TabView(selection: $tabBarManager.selectedTab) {
-                HomeView(viewmodel: HomeViewModel(fetchPopularUseCase: FetchPopularUseCase(repository: MovieRepository()),
-                                                  fetchPosterUseCase: FetchPosterUseCase(repository: MovieRepository())))
+                HomeView(viewmodel: HomeViewModel())
                     .frame(maxHeight: .infinity)
                     .tabItem {
                         Label("Home", systemImage: "house")
