@@ -9,33 +9,32 @@ import XCTest
 
 final class MovieUITests: XCTestCase {
 
+    var app: XCUIApplication!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launchArguments = ["ui-testing"]
+        app.launchEnvironment = ["network-success": "1"]
+        app.launch()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app = nil
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    func testSplashAndTransitionToHome() throws {
+        // Verificar que el SplashView esté visible
+        let splashText = app.staticTexts["Splash View"]
+        XCTAssertTrue(splashText.waitForExistence(timeout: 3), "The SplashView should be visible")
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        // Esperar a que el TabBarView aparezca
+        let homeTabBar = app.tabBars.buttons["Home"]
+        XCTAssertTrue(homeTabBar.waitForExistence(timeout: 5), "The TabBarView should appear after the splash")
+        
+        // Verificar que la transición al Home haya ocurrido
+    //    homeTabBar.tap()
+    //    let homeText = app.staticTexts["Home View"]
+    //    XCTAssertTrue(homeText.exists, "The Home View should be visible")
     }
 }

@@ -7,11 +7,6 @@
 
 import Foundation
 
-protocol MovieRepositoryProtocol {
-    func fetchPopularMovies(request: PopularEntity.Request) async throws -> PopularEntity.Response
-    func fetchMoviePoster(request: PosterEntity.Request) async throws -> Data
-}
-
 class MovieRepository: ApiNetwork, MovieRepositoryProtocol {
     func fetchPopularMovies(request: PopularEntity.Request) async throws -> PopularEntity.Response {
         config.serverType = .api
@@ -27,22 +22,5 @@ class MovieRepository: ApiNetwork, MovieRepositoryProtocol {
         config.path = "/t/p/w500\(request.path)"
         config.method = .get
         return try await apiCall()
-    }
-}
-
-class MovieRepositoryMock: ApiNetworkMock, MovieRepositoryProtocol {
-    func fetchPopularMovies(request: PopularEntity.Request) async throws -> PopularEntity.Response {
-        mockFileName = "popular_mock_success_response"
-        return try await apiCallMocked(bundle: .main)
-    }
-    
-    func fetchMoviePoster(request: PosterEntity.Request) async throws -> Data {
-        return try await apiCallMocked(bundle: .main)
-    }
-}
-
-class MoviewRepositoryFactory {
-    static func create() -> MovieRepositoryProtocol {
-        return MovieRepository()
     }
 }

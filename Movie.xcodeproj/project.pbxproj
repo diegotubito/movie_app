@@ -13,7 +13,6 @@
 		F14D2E452C88C39B0039AC17 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F14D2E442C88C39B0039AC17 /* Preview Assets.xcassets */; };
 		F14D2E4F2C88C39B0039AC17 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E4E2C88C39B0039AC17 /* MovieRepository.swift */; };
 		F14D2E592C88C39B0039AC17 /* MovieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E582C88C39B0039AC17 /* MovieUITests.swift */; };
-		F14D2E5B2C88C39B0039AC17 /* MovieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E5A2C88C39B0039AC17 /* MovieUITestsLaunchTests.swift */; };
 		F14D2E702C88C7780039AC17 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E6F2C88C7780039AC17 /* TabBarView.swift */; };
 		F14D2E722C88C7BA0039AC17 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E712C88C7BA0039AC17 /* TabBarViewModel.swift */; };
 		F14D2E752C88C89F0039AC17 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2E742C88C89F0039AC17 /* Coordinator.swift */; };
@@ -42,6 +41,9 @@
 		F14D2EAE2C8912D50039AC17 /* PosterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EAD2C8912D50039AC17 /* PosterEntity.swift */; };
 		F14D2EB02C89132B0039AC17 /* popular_mock_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = F14D2EAF2C89132B0039AC17 /* popular_mock_success_response.json */; };
 		F14D2EB22C891C0E0039AC17 /* MovieUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EB12C891C0E0039AC17 /* MovieUseCase.swift */; };
+		F14D2EB42C8921950039AC17 /* MovieRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EB32C8921950039AC17 /* MovieRepositoryMock.swift */; };
+		F14D2EB62C8921AF0039AC17 /* MovieRepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EB52C8921AF0039AC17 /* MovieRepositoryFactory.swift */; };
+		F14D2EB82C8921DA0039AC17 /* MovieRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EB72C8921DA0039AC17 /* MovieRepositoryProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +73,6 @@
 		F14D2E4E2C88C39B0039AC17 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		F14D2E542C88C39B0039AC17 /* MovieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14D2E582C88C39B0039AC17 /* MovieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieUITests.swift; sourceTree = "<group>"; };
-		F14D2E5A2C88C39B0039AC17 /* MovieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F14D2E6F2C88C7780039AC17 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		F14D2E712C88C7BA0039AC17 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		F14D2E742C88C89F0039AC17 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -101,6 +102,9 @@
 		F14D2EAD2C8912D50039AC17 /* PosterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterEntity.swift; sourceTree = "<group>"; };
 		F14D2EAF2C89132B0039AC17 /* popular_mock_success_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = popular_mock_success_response.json; sourceTree = "<group>"; };
 		F14D2EB12C891C0E0039AC17 /* MovieUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieUseCase.swift; sourceTree = "<group>"; };
+		F14D2EB32C8921950039AC17 /* MovieRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryMock.swift; sourceTree = "<group>"; };
+		F14D2EB52C8921AF0039AC17 /* MovieRepositoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryFactory.swift; sourceTree = "<group>"; };
+		F14D2EB72C8921DA0039AC17 /* MovieRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				F14D2E582C88C39B0039AC17 /* MovieUITests.swift */,
-				F14D2E5A2C88C39B0039AC17 /* MovieUITestsLaunchTests.swift */,
 			);
 			path = MovieUITests;
 			sourceTree = "<group>";
@@ -314,26 +317,20 @@
 		F14D2E9D2C88DBA60039AC17 /* MovieEndpoints */ = {
 			isa = PBXGroup;
 			children = (
-				F14D2EA42C88DEAA0039AC17 /* UseCase */,
 				F14D2EAC2C8912C20039AC17 /* Poster */,
 				F14D2EAB2C8912AB0039AC17 /* Popular */,
+				F14D2EB72C8921DA0039AC17 /* MovieRepositoryProtocol.swift */,
 				F14D2EA02C88DD1A0039AC17 /* MovieRepository.swift */,
+				F14D2EB52C8921AF0039AC17 /* MovieRepositoryFactory.swift */,
+				F14D2EB32C8921950039AC17 /* MovieRepositoryMock.swift */,
 			);
 			path = MovieEndpoints;
-			sourceTree = "<group>";
-		};
-		F14D2EA42C88DEAA0039AC17 /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-				F14D2EA52C88DEBA0039AC17 /* FetchPopularUseCase.swift */,
-				F14D2EA72C88E3620039AC17 /* FetchPosterUseCase.swift */,
-			);
-			path = UseCase;
 			sourceTree = "<group>";
 		};
 		F14D2EAB2C8912AB0039AC17 /* Popular */ = {
 			isa = PBXGroup;
 			children = (
+				F14D2EA52C88DEBA0039AC17 /* FetchPopularUseCase.swift */,
 				F14D2EA22C88DD420039AC17 /* PopularEntity.swift */,
 				F14D2E9E2C88DC760039AC17 /* PopularModel.swift */,
 				F14D2EAF2C89132B0039AC17 /* popular_mock_success_response.json */,
@@ -344,6 +341,7 @@
 		F14D2EAC2C8912C20039AC17 /* Poster */ = {
 			isa = PBXGroup;
 			children = (
+				F14D2EA72C88E3620039AC17 /* FetchPosterUseCase.swift */,
 				F14D2EAD2C8912D50039AC17 /* PosterEntity.swift */,
 			);
 			path = Poster;
@@ -483,6 +481,7 @@
 				F14D2E8B2C88D3610039AC17 /* SplashViewModel.swift in Sources */,
 				F14D2EA62C88DEBA0039AC17 /* FetchPopularUseCase.swift in Sources */,
 				F14D2E912C88D65F0039AC17 /* HomeViewModel.swift in Sources */,
+				F14D2EB42C8921950039AC17 /* MovieRepositoryMock.swift in Sources */,
 				F14D2E942C88D7070039AC17 /* ApiNetwork.swift in Sources */,
 				F14D2E722C88C7BA0039AC17 /* TabBarViewModel.swift in Sources */,
 				F14D2E8D2C88D5DC0039AC17 /* SearchViewModel.swift in Sources */,
@@ -496,11 +495,13 @@
 				F14D2E402C88C39A0039AC17 /* SplashView.swift in Sources */,
 				F14D2E962C88D7240039AC17 /* ApiConfig.swift in Sources */,
 				F14D2E752C88C89F0039AC17 /* Coordinator.swift in Sources */,
+				F14D2EB62C8921AF0039AC17 /* MovieRepositoryFactory.swift in Sources */,
 				F14D2E7B2C88C9F50039AC17 /* SearchView.swift in Sources */,
 				F14D2E8F2C88D6380039AC17 /* WatchListViewModel.swift in Sources */,
 				F14D2E982C88D7420039AC17 /* ApiError.swift in Sources */,
 				F14D2E842C88CC470039AC17 /* Color+Extension.swift in Sources */,
 				F14D2E7F2C88CA8E0039AC17 /* WatchListCoordinator.swift in Sources */,
+				F14D2EB82C8921DA0039AC17 /* MovieRepositoryProtocol.swift in Sources */,
 				F14D2E702C88C7780039AC17 /* TabBarView.swift in Sources */,
 				F14D2E862C88D0EC0039AC17 /* Font+Extension.swift in Sources */,
 				F14D2EAE2C8912D50039AC17 /* PosterEntity.swift in Sources */,
@@ -525,7 +526,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F14D2E592C88C39B0039AC17 /* MovieUITests.swift in Sources */,
-				F14D2E5B2C88C39B0039AC17 /* MovieUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
