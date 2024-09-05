@@ -11,10 +11,6 @@ struct DetailEntity {
     struct Request: Encodable {
         let _id: String
     }
-    
-    struct Response: Decodable {
-        let results: [DetailModel]
-    }
 }
 
 

@@ -29,6 +29,9 @@ struct UpcomingView: View {
                         }
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 18))
+                    .onTapGesture {
+                        coordinator.push(.detail(movieId: movie._id))
+                    }
                 }
             }
             .padding()

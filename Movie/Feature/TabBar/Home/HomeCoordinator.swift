@@ -8,5 +8,6 @@
 import Foundation
 
 enum HomeScreen: Hashable {
-    case detail
+    case detail(movieId: Int)
+    case playMovie(movieId: Int)
 }

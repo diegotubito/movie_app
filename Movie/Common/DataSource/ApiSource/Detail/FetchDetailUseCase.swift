@@ -9,7 +9,7 @@ import Foundation
 
 protocol FetchDetailUseCaseProtocol {
     init(repository: MovieRepositoryProtocol)
-    func excecute(_id: String) async throws -> DetailEntity.Response
+    func excecute(_id: Int) async throws -> DetailModel
 }
 
 class FetchDetailUseCase: FetchDetailUseCaseProtocol {
@@ -19,8 +19,8 @@ class FetchDetailUseCase: FetchDetailUseCaseProtocol {
         self.repository = repository
     }
     
-    func excecute(_id: String) async throws -> DetailEntity.Response {
-        let request = DetailEntity.Request(_id: _id)
+    func excecute(_id: Int) async throws -> DetailModel {
+        let request = DetailEntity.Request(_id: String(_id))
         return try await repository.fetchDetailMovie(request: request)
     }
 }

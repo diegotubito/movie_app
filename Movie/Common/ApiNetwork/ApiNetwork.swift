@@ -31,7 +31,7 @@ open class ApiNetwork {
         } catch let error as APIError {
             throw error
         } catch {
-            throw APIError.serverError(message: "Unknow server error")
+            throw APIError.serverError(message: "Serialization Error")
         }
     }
     

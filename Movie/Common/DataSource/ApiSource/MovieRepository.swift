@@ -52,7 +52,7 @@ class MovieRepository: ApiNetwork, MovieRepositoryProtocol {
         return try await apiCall()
     }
     
-    func fetchDetailMovie(request: DetailEntity.Request) async throws -> DetailEntity.Response {
+    func fetchDetailMovie(request: DetailEntity.Request) async throws -> DetailModel {
         config.serverType = .api
         config.path = "/3/movie/\(request._id)"
         config.addQueryItem(key: "language", value: "en-US")
@@ -70,12 +70,10 @@ class MovieRepository: ApiNetwork, MovieRepositoryProtocol {
         config.method = .get
         return try await apiCall()
     }
-    
     func fetchMovieToWatch(request: MovieToWatchEntity.Request) async throws -> MovieToWatchEntity.Response {
         config.serverType = .api
         config.path = "/3/movie/\(request._id)/videos"
         config.addQueryItem(key: "language", value: "en-US")
-        config.addQueryItem(key: "page", value: "1")
         config.method = .get
         return try await apiCall()
     }

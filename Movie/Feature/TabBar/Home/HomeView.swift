@@ -20,19 +20,34 @@ struct HomeView: View {
     }
     
     var body: some View {
-        CustomZStack(coordinator: coordinator, viewmodel: popularViewModel) {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        scrollViewContent()
+        NavigationStack(path: $coordinator.path) {
+            CustomZStack(coordinator: coordinator, viewmodel: popularViewModel) {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        Text("What do you want to watch?")
                             .padding(.horizontal)
+                            .foregroundStyle(Color.Movie.white)
+                            .font(.system(size: 18, weight: .medium))
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            scrollViewContent()
+                                .padding(.horizontal)
+                        }
+                        .frame(height: 225)
+                        
+                        segmentedControlView()
                     }
-                    .frame(height: 225)
-                    
-                    segmentedControlView()
+                }
+                .frame(maxHeight: .infinity, alignment: .top)
+            }
+            .navigationDestination(for: HomeScreen.self) { screen in
+                switch screen {
+                case .detail(movieId: let movieId):
+                    DetailView(viewModel: DetailViewModel(movieId: movieId))
+                case .playMovie(movieId: let movieId):
+                    PlayMovieView(viewmodel: PlayMovieViewModel(movieId: movieId))
                 }
             }
-            .frame(maxHeight: .infinity, alignment: .top)
         }
         .onAppear {
             popularViewModel.fetchPopular()
@@ -44,6 +59,9 @@ struct HomeView: View {
         LazyHStack {
             ForEach(Array(popularViewModel.popularMovies.enumerated()), id: \.element) { index, movie in
                 popularCellView(movie: movie, index: index)
+                    .onTapGesture {
+                        coordinator.push(.detail(movieId: movie._id))
+                    }
             }
         }
     }

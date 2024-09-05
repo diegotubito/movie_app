@@ -29,7 +29,7 @@ class MovieRepositoryMock: ApiNetworkMock, MovieRepositoryProtocol {
         return try await apiCallMocked(bundle: .main)
     }
     
-    func fetchDetailMovie(request: DetailEntity.Request) async throws -> DetailEntity.Response {
+    func fetchDetailMovie(request: DetailEntity.Request) async throws -> DetailModel {
         return try await apiCallMocked(bundle: .main)
     }
     
