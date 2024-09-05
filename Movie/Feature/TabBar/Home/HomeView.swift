@@ -92,14 +92,12 @@ struct HomeView: View {
             .colorInvert()
             .pickerStyle(SegmentedPickerStyle())
             
-            Text("Selected segment: \(selectedSegment.rawValue)")
-                .padding()
             
             switch selectedSegment {
             case .nowPlaying:
-                TopRatedView()
+                NowPlayingView()
             case .upcoming:
-                TopRatedView()
+                UpcomingView()
             case .topRated:
                 TopRatedView()
             }

@@ -18,4 +18,6 @@ struct NowPlayingModel: Decodable, Identifiable, Hashable {
         case originalTitle
         case posterPath
     }
+    
+    var posterImageData: Data?
 }

@@ -1,37 +1,38 @@
 //
-//  TopRatedViewModel.swift
+//  UpcomingViewModel.swift
 //  Movie
 //
 //  Created by David Diego Gomez on 05/09/2024.
 //
 
-import SwiftUI
+import Foundation
 
-class TopRatedViewModel: BaseViewModel {
-    @Published var movies: [TopRatedModel] = []
+class UpcomingViewModel: BaseViewModel {
+    @Published var movies: [UpcomingModel] = []
+    
     private let networkMonitor: NetworkMonitor
     private let coreDataManager: CoreDataManager
     
-    init(networkMonitor: NetworkMonitor, coreDataManager: CoreDataManager = CoreDataManager(containerName: "Movie")) {
+    init(networkMonitor: NetworkMonitor = NetworkMonitor()) {
         self.networkMonitor = networkMonitor
-        self.coreDataManager = coreDataManager
+        self.coreDataManager = CoreDataManager(containerName: "Movie")
     }
     
     @MainActor
-    func fetchTopRated() {
+    func fetchUpcoming() {
         if networkMonitor.isConnected {
-            print("Loading Top Rated From API")
+            print("Loading Upcoming From API")
             Task {
                 do {
                     isLoading = true
                     
                     
-                    let fetchTopRatedUseCase = FetchTopRatedUseCase()
-                    let response = try await fetchTopRatedUseCase.excecute()
+                    let fetchUpcomingUseCase = FetchUpcomingUseCase()
+                    let response = try await fetchUpcomingUseCase.excecute()
                     
                     
-                    coreDataManager.deleteEntities(ofType: TopRated.self)
-                    coreDataManager.saveEntities(models: response.results, entityType: TopRated.self) { (movieModel, popularEntity) in
+                    coreDataManager.deleteEntities(ofType: Upcoming.self)
+                    coreDataManager.saveEntities(models: response.results, entityType: Upcoming.self) { (movieModel, popularEntity) in
                         popularEntity.id = Int32(movieModel._id)
                         popularEntity.originalTitle = movieModel.originalTitle
                         popularEntity.posterPath = movieModel.posterPath
@@ -49,7 +50,7 @@ class TopRatedViewModel: BaseViewModel {
                 }
             }
         } else {
-            print("Loading Top Rated From Core Data")
+            print("Loading Upcoming From Core Data")
             loadMoviesFromCoreData()
         }
     }
@@ -79,9 +80,9 @@ class TopRatedViewModel: BaseViewModel {
     
     func loadMoviesFromCoreData() {
         isLoading = true
-        coreDataManager.fetchEntities(ofType: TopRated.self) { popularEntities in
+        coreDataManager.fetchEntities(ofType: Upcoming.self) { popularEntities in
             let movies = popularEntities.map { movieEntity in
-                TopRatedModel(
+                UpcomingModel(
                     _id: Int(movieEntity.id),
                     originalTitle: movieEntity.originalTitle ?? "Unknown Title",
                     posterPath: movieEntity.posterPath ?? "",
@@ -96,3 +97,4 @@ class TopRatedViewModel: BaseViewModel {
         }
     }
 }
+

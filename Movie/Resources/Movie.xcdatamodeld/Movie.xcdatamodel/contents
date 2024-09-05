@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="NowPlaying" representedClassName="NowPlaying" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="originalTitle" optional="YES" attributeType="String"/>
+        <attribute name="posterImageData" optional="YES" attributeType="Binary"/>
+        <attribute name="posterPath" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Popular" representedClassName="Popular" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="originalTitle" optional="YES" attributeType="String"/>
@@ -7,6 +13,12 @@
         <attribute name="posterPath" optional="YES" attributeType="String"/>
     </entity>
     <entity name="TopRated" representedClassName="TopRated" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="originalTitle" optional="YES" attributeType="String"/>
+        <attribute name="posterImageData" optional="YES" attributeType="Binary"/>
+        <attribute name="posterPath" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Upcoming" representedClassName="Upcoming" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="originalTitle" optional="YES" attributeType="String"/>
         <attribute name="posterImageData" optional="YES" attributeType="Binary"/>

@@ -1,5 +1,5 @@
 //
-//  TopRatedView.swift
+//  UpcomingView.swift
 //  Movie
 //
 //  Created by David Diego Gomez on 05/09/2024.
@@ -7,15 +7,9 @@
 
 import SwiftUI
 
-struct TopRatedView: View {
-    @StateObject var viewmodel: TopRatedViewModel
+struct UpcomingView: View {
+    @StateObject var viewmodel = UpcomingViewModel()
     @EnvironmentObject var coordinator: Coordinator<HomeScreen>
-    @EnvironmentObject var networkMonitor: NetworkMonitor
-   
-    init() {
-        let networkMonitor = NetworkMonitor()
-        _viewmodel = StateObject(wrappedValue: TopRatedViewModel(networkMonitor: networkMonitor))
-    }
 
     var body: some View {
         CustomZStack(coordinator: coordinator, viewmodel: viewmodel) {
@@ -41,12 +35,13 @@ struct TopRatedView: View {
             
         }
         .onAppear {
-            viewmodel.fetchTopRated()
+            viewmodel.fetchUpcoming()
         }
     }
 }
 
 #Preview {
-    TopRatedView()
+    UpcomingView()
         .environmentObject(Coordinator<HomeScreen>())
 }
+
