@@ -8,5 +8,6 @@
 import Foundation
 
 enum WatchListScreen: Hashable {
-    case detail
+    case detail(movieId: Int)
+    case playMovie(movieId: Int)
 }

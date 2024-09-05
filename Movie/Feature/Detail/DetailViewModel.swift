@@ -6,13 +6,20 @@
 //
 
 import Foundation
+import CoreData
 
 class DetailViewModel: BaseViewModel {
     var movieId: Int
     @Published var detailMovie: DetailModel?
+    @Published var isBookmarked: Bool = false
+    
+    private let coreDataManager: CoreDataManager
     
     init(movieId: Int) {
         self.movieId = movieId
+        self.coreDataManager = CoreDataManager(containerName: "Movie")
+        super.init()
+        checkIfBookmarked()
     }
     
     @MainActor
@@ -67,5 +74,25 @@ class DetailViewModel: BaseViewModel {
             }
         }
     }
-
+    
+    func toggleBookmark() {
+        guard let detailMovie = detailMovie else { return }
+        coreDataManager.toggleBookmark(detailMovie: detailMovie) { [weak self] isBookmarked in
+            self?.isBookmarked = isBookmarked
+        }
+    }
+    
+    private func checkIfBookmarked() {
+        let fetchRequest: NSFetchRequest<WatchList> = WatchList.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", movieId)
+        
+        do {
+            let bookmarks = try coreDataManager.viewContext.fetch(fetchRequest)
+            self.isBookmarked = bookmarks.first != nil
+        } catch {
+            print("Failed to check bookmark status: \(error.localizedDescription)")
+            self.isBookmarked = false
+        }
+    }
+    
 }

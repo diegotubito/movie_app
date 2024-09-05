@@ -8,8 +8,8 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
-    private let viewContext: NSManagedObjectContext
-    private let persistentContainer: NSPersistentContainer
+    let viewContext: NSManagedObjectContext
+    let persistentContainer: NSPersistentContainer
 
     init(containerName: String) {
         persistentContainer = NSPersistentContainer(name: containerName)
@@ -94,4 +94,42 @@ class CoreDataManager {
                print("Failed to save data for \(entityType): \(error.localizedDescription)")
            }
        }
+}
+
+extension CoreDataManager {
+    func toggleBookmark(detailMovie: DetailModel, completion: @escaping (Bool) -> Void) {
+        let fetchRequest: NSFetchRequest<WatchList> = WatchList.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", detailMovie._id)
+        
+        do {
+            let bookmarks = try viewContext.fetch(fetchRequest)
+            
+            if let existingBookmark = bookmarks.first {
+                // If the bookmark exists, delete it
+                viewContext.delete(existingBookmark)
+                print("Bookmark deleted for movieId: \(detailMovie._id)")
+            } else {
+                // If it doesn't exist, create a new bookmark
+                let newBookmark = WatchList(context: viewContext)
+                newBookmark.id = Int32(detailMovie._id)
+                newBookmark.originalTitle = detailMovie.originalTitle
+                newBookmark.posterImageData = detailMovie.posterImageData
+                newBookmark.voteAverage = detailMovie.voteAverage
+                newBookmark.releaseDate = detailMovie.releaseDate
+                newBookmark.runtime = Int32(detailMovie.runtime)
+                
+                print("Bookmark added for movieId: \(detailMovie._id)")
+            }
+            
+            // Save the context after modification
+            try viewContext.save()
+            
+            DispatchQueue.main.async {
+                completion(bookmarks.first == nil) // If it didn't exist, now it does (return true), otherwise false
+            }
+        } catch {
+            print("Error toggling bookmark for movieId \(detailMovie._id): \(error.localizedDescription)")
+            completion(false)
+        }
+    }
 }

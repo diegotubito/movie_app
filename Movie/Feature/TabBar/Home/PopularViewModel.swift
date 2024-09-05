@@ -12,6 +12,7 @@ class PopularViewModel: BaseViewModel {
     
     private let networkMonitor: NetworkMonitor
     private let coreDataManager: CoreDataManager
+    var isPresented = false
     
     init(networkMonitor: NetworkMonitor = NetworkMonitor()) {
       
@@ -39,7 +40,8 @@ class PopularViewModel: BaseViewModel {
                     for movie in response.results {
                         await fetchPoster(for: movie.posterPath, forMovieID: movie._id)
                     }
-                    
+                    isPresented = true
+
                 } catch {
                     isLoading = false
                     handleError(error: error, .alert(routeBack: .none))

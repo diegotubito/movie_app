@@ -43,14 +43,16 @@ struct HomeView: View {
             .navigationDestination(for: HomeScreen.self) { screen in
                 switch screen {
                 case .detail(movieId: let movieId):
-                    DetailView(viewModel: DetailViewModel(movieId: movieId))
+                    DetailView<HomeScreen>(viewModel: DetailViewModel(movieId: movieId))
                 case .playMovie(movieId: let movieId):
-                    PlayMovieView(viewmodel: PlayMovieViewModel(movieId: movieId))
+                    PlayMovieView<HomeScreen>(viewmodel: PlayMovieViewModel(movieId: movieId))
                 }
             }
         }
         .onAppear {
-            popularViewModel.fetchPopular()
+            if !popularViewModel.isPresented {
+                popularViewModel.fetchPopular()
+            }
         }
     }
     
@@ -104,10 +106,9 @@ struct HomeView: View {
             Picker("Select a segment", selection: $selectedSegment) {
                 ForEach(segmentedOptions.allCases, id: \.self) { segment in
                     Text(segment.rawValue)
-                       
+                        .foregroundStyle(Color.red)
                 }
             }
-            .colorInvert()
             .pickerStyle(SegmentedPickerStyle())
             
             

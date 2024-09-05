@@ -6,7 +6,21 @@
 //
 
 import SwiftUI
+import CoreData
 
-class WatchListViewModel: ObservableObject {
+class WatchListViewModel: BaseViewModel {
+    @Published var watchList: [WatchList] = []
+    private let coreDataManager: CoreDataManager
     
+    override init() {
+        coreDataManager = CoreDataManager(containerName: "Movie")
+    }
+    
+    func fetchWatchlist() {
+        coreDataManager.fetchEntities(ofType: WatchList.self) { [weak self] movies in
+            DispatchQueue.main.async {
+                self?.watchList = movies
+            }
+        }
+    }
 }
