@@ -9,7 +9,7 @@ import Foundation
 
 protocol FetchMovieToWatchUseCaseProtocol {
     init(repository: MovieRepositoryProtocol)
-    func excecute(id: String) async throws -> MovieToWatchEntity.Response
+    func excecute(_id: String) async throws -> MovieToWatchEntity.Response
 }
 
 class FetchMovieToWatchUseCase: FetchMovieToWatchUseCaseProtocol {
@@ -19,8 +19,8 @@ class FetchMovieToWatchUseCase: FetchMovieToWatchUseCaseProtocol {
         self.repository = repository
     }
     
-    func excecute(id: String) async throws -> MovieToWatchEntity.Response {
-        let request = MovieToWatchEntity.Request(id: id)
+    func excecute(_id: String) async throws -> MovieToWatchEntity.Response {
+        let request = MovieToWatchEntity.Request(_id: _id)
         return try await repository.fetchMovieToWatch(request: request)
     }
 }

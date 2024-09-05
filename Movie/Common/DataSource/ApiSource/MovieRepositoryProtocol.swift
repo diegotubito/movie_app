@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MovieRepositoryProtocol {
-    func fetchPopularMovies(request: PopularEntity.Request) async throws -> PopularEntity.Response
+    func fetchPopularMovies(request: PopularMovieEntity.Request) async throws -> PopularMovieEntity.Response
     func fetchMoviePoster(request: PosterEntity.Request) async throws -> Data
     func fetchNowPlaying(request: NowPlayingEntity.Request) async throws -> NowPlayingEntity.Response
     func fetchUpcoming(request: UpcomingEntity.Request) async throws -> UpcomingEntity.Response

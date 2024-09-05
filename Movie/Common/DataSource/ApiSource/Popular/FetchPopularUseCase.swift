@@ -9,7 +9,7 @@ import Foundation
 
 protocol FetchPopularUseCaseProtocol {
     init(repository: MovieRepositoryProtocol)
-    func excecute() async throws -> PopularEntity.Response
+    func excecute() async throws -> PopularMovieEntity.Response
 }
 
 class FetchPopularUseCase: FetchPopularUseCaseProtocol {
@@ -19,8 +19,8 @@ class FetchPopularUseCase: FetchPopularUseCaseProtocol {
         self.repository = repository
     }
     
-    func excecute() async throws -> PopularEntity.Response {
-        let request = PopularEntity.Request()
+    func excecute() async throws -> PopularMovieEntity.Response {
+        let request = PopularMovieEntity.Request()
         return try await repository.fetchPopularMovies(request: request)
     }
 }

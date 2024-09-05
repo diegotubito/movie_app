@@ -9,7 +9,7 @@ import Foundation
 
 class MovieRepository: ApiNetwork, MovieRepositoryProtocol {
     
-    func fetchPopularMovies(request: PopularEntity.Request) async throws -> PopularEntity.Response {
+    func fetchPopularMovies(request: PopularMovieEntity.Request) async throws -> PopularMovieEntity.Response {
         config.serverType = .api
         config.path = "/3/movie/popular"
         config.addQueryItem(key: "language", value: "en-US")
@@ -54,7 +54,7 @@ class MovieRepository: ApiNetwork, MovieRepositoryProtocol {
     
     func fetchDetailMovie(request: DetailEntity.Request) async throws -> DetailEntity.Response {
         config.serverType = .api
-        config.path = "/3/movie/\(request.id)"
+        config.path = "/3/movie/\(request._id)"
         config.addQueryItem(key: "language", value: "en-US")
         config.addQueryItem(key: "page", value: "1")
         config.method = .get
@@ -73,7 +73,7 @@ class MovieRepository: ApiNetwork, MovieRepositoryProtocol {
     
     func fetchMovieToWatch(request: MovieToWatchEntity.Request) async throws -> MovieToWatchEntity.Response {
         config.serverType = .api
-        config.path = "/3/movie/\(request.id)/videos"
+        config.path = "/3/movie/\(request._id)/videos"
         config.addQueryItem(key: "language", value: "en-US")
         config.addQueryItem(key: "page", value: "1")
         config.method = .get

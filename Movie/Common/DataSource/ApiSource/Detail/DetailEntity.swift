@@ -9,7 +9,7 @@ import Foundation
 
 struct DetailEntity {
     struct Request: Encodable {
-        let id: String
+        let _id: String
     }
     
     struct Response: Decodable {

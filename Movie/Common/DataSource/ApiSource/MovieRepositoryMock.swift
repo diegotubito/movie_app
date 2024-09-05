@@ -8,7 +8,7 @@
 import Foundation
 
 class MovieRepositoryMock: ApiNetworkMock, MovieRepositoryProtocol {
-    func fetchPopularMovies(request: PopularEntity.Request) async throws -> PopularEntity.Response {
+    func fetchPopularMovies(request: PopularMovieEntity.Request) async throws -> PopularMovieEntity.Response {
         mockFileName = "popular_mock_success_response"
         return try await apiCallMocked(bundle: .main)
     }

@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct PopularEntity {
+struct PopularMovieEntity {
     struct Request: Encodable { }
     
     struct Response: Decodable {
-        let results: [PopularModel]
+        let results: [PopularMovieModel]
     }
 }
 
