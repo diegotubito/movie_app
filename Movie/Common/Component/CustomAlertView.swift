@@ -19,7 +19,6 @@ struct CustomAlertView: View {
             ZStack {
                 Color.clear
                         .ignoresSafeArea()
-                        .background(.ultraThinMaterial)
                 
                 VStack {
                     Text(title)

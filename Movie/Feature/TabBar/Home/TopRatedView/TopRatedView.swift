@@ -38,8 +38,8 @@ struct TopRatedView: View {
                 }
             }
             .padding()
-            
         }
+        
         .onAppear {
             viewmodel.fetchTopRated()
         }
