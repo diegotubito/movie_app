@@ -11,10 +11,11 @@ struct SplashView: View {
     @StateObject var viewmodel = SplashViewModel()
     
     var body: some View {
-        VStack {
-            Text("Splash View")
+        CustomZStack(coordinator: Coordinator<HomeScreen>(), viewmodel: viewmodel) {
+            Image("popcorn 1")
+                .resizable()
+                .frame(width: 189, height: 189)
         }
-        .padding()
         .onAppear {
             viewmodel.loadInitialValues()
         }

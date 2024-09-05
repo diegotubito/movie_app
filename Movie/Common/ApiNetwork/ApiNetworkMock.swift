@@ -34,11 +34,9 @@ open class ApiNetworkMock {
         if !success {
             throw APIError.mockFailed
         }
-        let json = try? JSONSerialization.jsonObject(with: data)
-        print(json)
-        // Configuración del JSONDecoder con la estrategia de snake_case
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         guard let register = try? decoder.decode(T.self, from: data) else {
             throw APIError.serialization

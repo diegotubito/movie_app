@@ -7,7 +7,7 @@
 import SwiftUI
 import CoreData
 
-class PopularViewModel: ObservableObject {
+class PopularViewModel: BaseViewModel {
     @Published var popularMovies: [PopularMovieModel] = []
     
     let fetchPopularUseCase: FetchPopularUseCaseProtocol
@@ -24,10 +24,11 @@ class PopularViewModel: ObservableObject {
     
     @MainActor
     func fetchPopular() {
-        if !networkMonitor.isConnected {
+        if networkMonitor.isConnected {
             print("Loading from API")
             Task {
                 do {
+                    isLoading = true
                     let response = try await fetchPopularUseCase.excecute()
                     coreDataManager.deleteEntities(ofType: Popular.self)
                     coreDataManager.saveEntitiesInBackground(models: response.results, entityType: Popular.self) { (movieModel, popularEntity) in
@@ -42,9 +43,8 @@ class PopularViewModel: ObservableObject {
                     }
                     
                 } catch {
-                    if let error = error as? APIError {
-                        print(error.message)
-                    }
+                    isLoading = false
+                    handleError(error: error, .alert(routeBack: .none))
                     print(error.localizedDescription)
                 }
             }
@@ -78,7 +78,7 @@ class PopularViewModel: ObservableObject {
     }
     
     func loadPopularMoviesFromCoreData() {
-        
+        isLoading = true
         coreDataManager.fetchEntities(ofType: Popular.self) { popularEntities in
             let movies = popularEntities.map { movieEntity in
                 PopularMovieModel(
@@ -91,6 +91,7 @@ class PopularViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 self.popularMovies = movies
+                self.isLoading = false
             }
         }
     }

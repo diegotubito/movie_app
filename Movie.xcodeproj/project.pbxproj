@@ -67,6 +67,10 @@
 		F14D2EEE2C8932E40039AC17 /* PopularRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EED2C8932E40039AC17 /* PopularRecordModel.swift */; };
 		F14D2EF72C894B870039AC17 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EF62C894B870039AC17 /* NetworkMonitor.swift */; };
 		F14D2EFA2C894E150039AC17 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EF92C894E150039AC17 /* CoreDataManager.swift */; };
+		F14D2EFD2C8974280039AC17 /* CustomZStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EFC2C8974280039AC17 /* CustomZStack.swift */; };
+		F14D2EFF2C8975560039AC17 /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EFE2C8975560039AC17 /* CustomProgressView.swift */; };
+		F14D2F012C89757E0039AC17 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2F002C89757E0039AC17 /* CustomAlertView.swift */; };
+		F14D2F032C8975F10039AC17 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2F022C8975F10039AC17 /* BaseViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +156,10 @@
 		F14D2EF02C8934B00039AC17 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F14D2EF62C894B870039AC17 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		F14D2EF92C894E150039AC17 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		F14D2EFC2C8974280039AC17 /* CustomZStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomZStack.swift; sourceTree = "<group>"; };
+		F14D2EFE2C8975560039AC17 /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		F14D2F002C89757E0039AC17 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		F14D2F022C8975F10039AC17 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +248,7 @@
 		F14D2E672C88C6DC0039AC17 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F14D2EFB2C8974210039AC17 /* Component */,
 				F14D2EF82C894E0E0039AC17 /* CoreData */,
 				F14D2EF52C894B7A0039AC17 /* NetworkMonitor */,
 				F14D2E9A2C88DB5D0039AC17 /* DataSource */,
@@ -506,6 +515,17 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		F14D2EFB2C8974210039AC17 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				F14D2EFC2C8974280039AC17 /* CustomZStack.swift */,
+				F14D2F022C8975F10039AC17 /* BaseViewModel.swift */,
+				F14D2EFE2C8975560039AC17 /* CustomProgressView.swift */,
+				F14D2F002C89757E0039AC17 /* CustomAlertView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -639,6 +659,7 @@
 			files = (
 				F14D2EC62C8926AA0039AC17 /* UpcomingEntity.swift in Sources */,
 				F14D2ED22C8927000039AC17 /* DetailEntity.swift in Sources */,
+				F14D2EFD2C8974280039AC17 /* CustomZStack.swift in Sources */,
 				F14D2E8B2C88D3610039AC17 /* SplashViewModel.swift in Sources */,
 				F14D2EA62C88DEBA0039AC17 /* FetchPopularUseCase.swift in Sources */,
 				F14D2EE22C892AF20039AC17 /* SearchModel.swift in Sources */,
@@ -659,6 +680,7 @@
 				F14D2EE02C892AEC0039AC17 /* SearchEntity.swift in Sources */,
 				F14D2EDB2C8927400039AC17 /* FetchMovieToWatchUseCase.swift in Sources */,
 				F14D2EC92C8926BC0039AC17 /* TopRatedModel.swift in Sources */,
+				F14D2F032C8975F10039AC17 /* BaseViewModel.swift in Sources */,
 				F14D2EAA2C89116F0039AC17 /* ApiNetworkMock.swift in Sources */,
 				F14D2E792C88C9720039AC17 /* HomeView.swift in Sources */,
 				F14D2E402C88C39A0039AC17 /* SplashView.swift in Sources */,
@@ -669,6 +691,7 @@
 				F14D2ECB2C8926C10039AC17 /* TopRatedEntity.swift in Sources */,
 				F14D2E752C88C89F0039AC17 /* Coordinator.swift in Sources */,
 				F14D2EB62C8921AF0039AC17 /* MovieRepositoryFactory.swift in Sources */,
+				F14D2F012C89757E0039AC17 /* CustomAlertView.swift in Sources */,
 				F14D2E7B2C88C9F50039AC17 /* SearchView.swift in Sources */,
 				F14D2EBD2C8926510039AC17 /* NowPlayingEntity.swift in Sources */,
 				F14D2EDE2C892AE50039AC17 /* FetchSearchUseCase.swift in Sources */,
@@ -690,6 +713,7 @@
 				F14D2EBF2C8926690039AC17 /* FetchNowPlayingUseCase.swift in Sources */,
 				F14D2EA82C88E3620039AC17 /* FetchPosterUseCase.swift in Sources */,
 				F14D2E3E2C88C39A0039AC17 /* MovieApp.swift in Sources */,
+				F14D2EFF2C8975560039AC17 /* CustomProgressView.swift in Sources */,
 				F14D2E772C88C8D90039AC17 /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

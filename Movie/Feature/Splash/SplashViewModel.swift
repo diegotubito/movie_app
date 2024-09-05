@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class SplashViewModel: ObservableObject {
+class SplashViewModel: BaseViewModel {
     @Published var onInitialValuesDidLoad = false
     
     func loadInitialValues() {
