@@ -6,5 +6,11 @@
 	<string>https://api.themoviedb.org</string>
 	<key>ImageServerUrl</key>
 	<string>https://image.tmdb.org</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+
 </dict>
 </plist>

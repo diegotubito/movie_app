@@ -15,23 +15,31 @@ struct PlayMovieView<CoordinatorViewType: Hashable>: View {
     
     var body: some View {
         CustomZStack(coordinator: coordinator, viewmodel: viewmodel) {
-            VStack(alignment: .trailing) {
-                Image(systemName: "x.circle.fill")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundStyle(Color.Movie.paleWhite)
-                .onTapGesture {
-                   dismiss()
+            VStack(alignment: .center) {
+                HStack {
+                    Spacer()
+                    Image(systemName: "x.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundStyle(Color.Movie.paleWhite)
+                    .onTapGesture {
+                       dismiss()
+                    }
                 }
+                
+                
                 
                 if let url = trailerUrl {
+                    
                     WebView(url: url)
                         .frame(height: 300)
+                    Spacer()
+                   
                 } else {
                     Text("No Trailer Available")
+                    Spacer()
                 }
                 
-                Spacer()
             }
             .padding()
             .onAppear {
@@ -46,6 +54,6 @@ struct PlayMovieView<CoordinatorViewType: Hashable>: View {
 }
 
 #Preview {
-    PlayMovieView<HomeScreen>(viewmodel: PlayMovieViewModel(movieId: 1226578))
+    PlayMovieView<HomeScreen>(viewmodel: PlayMovieViewModel(movieId: 1))
         .environmentObject(Coordinator<HomeScreen>())
 }

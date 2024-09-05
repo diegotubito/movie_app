@@ -16,7 +16,6 @@ struct WatchListView: View {
             CustomZStack(coordinator: coordinator, viewmodel: viewModel) {
                 VStack {
                     if viewModel.watchList.isEmpty {
-                        // Empty state view
                         VStack {
                             Image("magic-box 1")
                                 .font(.largeTitle)

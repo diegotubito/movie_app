@@ -30,8 +30,12 @@ class DetailViewModel: BaseViewModel {
                 let fetchDetailUseCase = FetchDetailUseCase()
                 let response = try await fetchDetailUseCase.excecute(_id: movieId)
                 
-                await fetchPoster(for: response.posterPath)
-                await fetchBackgroundPoster(for: response.backdropPath)
+                if let posterPath = response.posterPath {
+                    await fetchPoster(for: posterPath)
+                }
+                if let backdropPath = response.backdropPath {
+                    await fetchBackgroundPoster(for: backdropPath)
+                }
                 
                 detailMovie = response
                 isLoading = false

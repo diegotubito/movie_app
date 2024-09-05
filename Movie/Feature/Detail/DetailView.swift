@@ -40,9 +40,21 @@ struct DetailView<CoordinatorViewType: Hashable>: View {
                         }
                         .frame(height: 250)
                     } else {
-                        Rectangle()
-                            .fill(Color.gray)
-                            .frame(height: 250)
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.gray)
+                                .frame(height: 250)
+                            
+                            // Play button
+                            Image(systemName: "play.circle.fill")
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                                .foregroundColor(.white)
+                                .shadow(radius: 10)
+                                .onTapGesture {
+                                    isModalPresented = true
+                                }
+                        }
                     }
                     
                     HStack(alignment: .top, spacing: 16) {

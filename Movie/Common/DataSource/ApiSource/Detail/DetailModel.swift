@@ -11,14 +11,14 @@ struct DetailModel: Decodable, Identifiable, Hashable {
     var id: UUID? = UUID()
     let _id: Int
     
-    let title: String
-    let originalTitle: String
-    let overview: String
-    let posterPath: String
-    let backdropPath: String
-    let releaseDate: String
-    let runtime: Int
-    let voteAverage: Double
+    var title: String
+    var originalTitle: String
+    var overview: String
+    var posterPath: String?
+    var backdropPath: String?
+    var releaseDate: String
+    var runtime: Int
+    var voteAverage: Double
     let tagline: String?
     
     enum CodingKeys: String, CodingKey {

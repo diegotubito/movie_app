@@ -60,10 +60,10 @@ class MovieRepository: ApiNetwork, MovieRepositoryProtocol {
         config.method = .get
         return try await apiCall()
     }
-    
+        
     func fetchSearch(request: SearchEntity.Request) async throws -> SearchEntity.Response {
         config.serverType = .api
-        config.path = "/3/movie/popular"
+        config.path = "/3/search/movie"
         config.addQueryItem(key: "language", value: "en-US")
         config.addQueryItem(key: "page", value: "1")
         config.addQueryItem(key: "query", value: request.query)

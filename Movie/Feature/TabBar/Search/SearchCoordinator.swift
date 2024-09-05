@@ -8,5 +8,5 @@
 import Foundation
 
 enum SearchScreen: Hashable {
-    case detail
+    case detail(movieId: Int)
 }
