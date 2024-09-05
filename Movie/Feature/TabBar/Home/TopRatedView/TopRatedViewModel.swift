@@ -1,35 +1,38 @@
 //
-//  HomeViewModel.swift
+//  TopRatedViewModel.swift
 //  Movie
 //
-//  Created by David Diego Gomez on 04/09/2024.
+//  Created by David Diego Gomez on 05/09/2024.
 //
-import SwiftUI
-import CoreData
 
-class PopularViewModel: BaseViewModel {
-    @Published var popularMovies: [PopularMovieModel] = []
+import Foundation
+
+class TopRatedViewModel: BaseViewModel {
+    @Published var topRatedMovies: [TopRatedModel] = []
     
     private let networkMonitor: NetworkMonitor
     private let coreDataManager: CoreDataManager
     
     init(networkMonitor: NetworkMonitor = NetworkMonitor()) {
-      
         self.networkMonitor = networkMonitor
         self.coreDataManager = CoreDataManager(containerName: "Movie")
     }
     
     @MainActor
-    func fetchPopular() {
+    func fetchTopRated() {
         if networkMonitor.isConnected {
-            print("Loading Popular From API")
+            print("Loading Top Rated From API")
             Task {
                 do {
                     isLoading = true
-                    let fetchPopularUseCase = FetchPopularUseCase()
-                    let response = try await fetchPopularUseCase.excecute()
-                    coreDataManager.deleteEntities(ofType: Popular.self)
-                    coreDataManager.saveEntities(models: response.results, entityType: Popular.self) { (movieModel, popularEntity) in
+                    
+                    
+                    let fetchTopRatedUseCase = FetchTopRatedUseCase()
+                    let response = try await fetchTopRatedUseCase.excecute()
+                    
+                    
+                    coreDataManager.deleteEntities(ofType: TopRated.self)
+                    coreDataManager.saveEntities(models: response.results, entityType: TopRated.self) { (movieModel, popularEntity) in
                         popularEntity.id = Int32(movieModel._id)
                         popularEntity.originalTitle = movieModel.originalTitle
                         popularEntity.posterPath = movieModel.posterPath
@@ -39,7 +42,7 @@ class PopularViewModel: BaseViewModel {
                     for movie in response.results {
                         await fetchPoster(for: movie.posterPath, forMovieID: movie._id)
                     }
-                    
+                     
                 } catch {
                     isLoading = false
                     handleError(error: error, .alert(routeBack: .none))
@@ -47,7 +50,7 @@ class PopularViewModel: BaseViewModel {
                 }
             }
         } else {
-            print("Loading Popular From API")
+            print("Loading Top Rated From Core Data")
             loadPopularMoviesFromCoreData()
         }
     }
@@ -64,8 +67,8 @@ class PopularViewModel: BaseViewModel {
                     dataFieldKeyPath: \Popular.posterImageData,
                     data: posterData
                 ) {
-                    if let index = self.popularMovies.firstIndex(where: { $0._id == id }) {
-                        self.popularMovies[index].posterImageData = posterData
+                    if let index = self.topRatedMovies.firstIndex(where: { $0._id == id }) {
+                        self.topRatedMovies[index].posterImageData = posterData
                     }
                 }
                 
@@ -77,9 +80,9 @@ class PopularViewModel: BaseViewModel {
     
     func loadPopularMoviesFromCoreData() {
         isLoading = true
-        coreDataManager.fetchEntities(ofType: Popular.self) { popularEntities in
+        coreDataManager.fetchEntities(ofType: TopRated.self) { popularEntities in
             let movies = popularEntities.map { movieEntity in
-                PopularMovieModel(
+                TopRatedModel(
                     _id: Int(movieEntity.id),
                     originalTitle: movieEntity.originalTitle ?? "Unknown Title",
                     posterPath: movieEntity.posterPath ?? "",
@@ -88,7 +91,7 @@ class PopularViewModel: BaseViewModel {
             }
             
             DispatchQueue.main.async {
-                self.popularMovies = movies
+                self.topRatedMovies = movies
                 self.isLoading = false
             }
         }

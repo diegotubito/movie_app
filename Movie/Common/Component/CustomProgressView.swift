@@ -18,7 +18,7 @@ struct CustomProgressView: View {
                 
                 ProgressView()
                     .scaleEffect(1.3)
-
+                    .colorInvert()
             }
         }
     }

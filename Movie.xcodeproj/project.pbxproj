@@ -71,6 +71,8 @@
 		F14D2EFF2C8975560039AC17 /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EFE2C8975560039AC17 /* CustomProgressView.swift */; };
 		F14D2F012C89757E0039AC17 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2F002C89757E0039AC17 /* CustomAlertView.swift */; };
 		F14D2F032C8975F10039AC17 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2F022C8975F10039AC17 /* BaseViewModel.swift */; };
+		F14D2F062C89EF2E0039AC17 /* TopRatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2F052C89EF2E0039AC17 /* TopRatedView.swift */; };
+		F14D2F082C89EF510039AC17 /* TopRatedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2F072C89EF510039AC17 /* TopRatedViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +162,8 @@
 		F14D2EFE2C8975560039AC17 /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		F14D2F002C89757E0039AC17 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		F14D2F022C8975F10039AC17 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		F14D2F052C89EF2E0039AC17 /* TopRatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedView.swift; sourceTree = "<group>"; };
+		F14D2F072C89EF510039AC17 /* TopRatedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +307,7 @@
 		F14D2E6C2C88C7480039AC17 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F14D2F042C89EDBC0039AC17 /* TopRatedView */,
 				F14D2E762C88C8D90039AC17 /* HomeCoordinator.swift */,
 				F14D2E782C88C9720039AC17 /* HomeView.swift */,
 				F14D2E902C88D65F0039AC17 /* PopularViewModel.swift */,
@@ -526,6 +531,15 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		F14D2F042C89EDBC0039AC17 /* TopRatedView */ = {
+			isa = PBXGroup;
+			children = (
+				F14D2F052C89EF2E0039AC17 /* TopRatedView.swift */,
+				F14D2F072C89EF510039AC17 /* TopRatedViewModel.swift */,
+			);
+			path = TopRatedView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -668,6 +682,7 @@
 				F14D2EB42C8921950039AC17 /* MovieRepositoryMock.swift in Sources */,
 				F14D2EF72C894B870039AC17 /* NetworkMonitor.swift in Sources */,
 				F14D2E942C88D7070039AC17 /* ApiNetwork.swift in Sources */,
+				F14D2F062C89EF2E0039AC17 /* TopRatedView.swift in Sources */,
 				F14D2E722C88C7BA0039AC17 /* TabBarViewModel.swift in Sources */,
 				F14D2E8D2C88D5DC0039AC17 /* SearchViewModel.swift in Sources */,
 				F14D2E7D2C88CA020039AC17 /* WatchListView.swift in Sources */,
@@ -705,6 +720,7 @@
 				F14D2EE82C8930E20039AC17 /* Movie.xcdatamodeld in Sources */,
 				F14D2EC42C8926A10039AC17 /* FetchUpcomingUseCase.swift in Sources */,
 				F14D2EC22C8926980039AC17 /* UpcomingModel.swift in Sources */,
+				F14D2F082C89EF510039AC17 /* TopRatedViewModel.swift in Sources */,
 				F14D2E702C88C7780039AC17 /* TabBarView.swift in Sources */,
 				F14D2E862C88D0EC0039AC17 /* Font+Extension.swift in Sources */,
 				F14D2EAE2C8912D50039AC17 /* PosterEntity.swift in Sources */,

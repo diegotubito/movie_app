@@ -40,7 +40,7 @@ class BaseViewModel: ObservableObject {
                 break
             case .invalidURL:
                 break
-            case .notFound(let url):
+            case .notFound(_):
                 errorTitle = LocalizedStringKey("_404_TITLE")
                 errorMessage = LocalizedStringKey("_404_MESSAGE")
                 break

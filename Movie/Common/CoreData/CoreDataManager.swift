@@ -21,32 +21,29 @@ class CoreDataManager {
         self.viewContext = persistentContainer.viewContext
     }
     
-    func saveEntitiesInBackground<T: NSManagedObject, U>(
+    func saveEntities<T: NSManagedObject, U>(
         models: [U],
         entityType: T.Type,
         configure: @escaping (U, T) -> Void,
         completion: @escaping () -> Void
     ) {
-        let backgroundContext = persistentContainer.newBackgroundContext()
         
-        backgroundContext.perform {
-            for model in models {
-                let entity = T(context: backgroundContext)
-                configure(model, entity)
+        for model in models {
+            let entity = T(context: viewContext)
+            configure(model, entity)
+        }
+        
+        do {
+            try viewContext.save()
+            print("\(T.self) entities saved to Core Data")
+            DispatchQueue.main.async {
+                completion()
             }
-            
-            do {
-                try backgroundContext.save()
-                print("\(T.self) entities saved to Core Data")
-                DispatchQueue.main.async {
-                    completion()
-                }
-            } catch {
-                print("Failed to save \(T.self) entities: \(error.localizedDescription)")
-            }
+        } catch {
+            print("Failed to save \(T.self) entities: \(error.localizedDescription)")
         }
     }
-
+    
     
     func fetchEntities<T: NSManagedObject>(ofType entityType: T.Type, completion: @escaping ([T]) -> Void) {
         let fetchRequest = NSFetchRequest<T>(entityName: String(describing: entityType))
@@ -87,8 +84,8 @@ class CoreDataManager {
            do {
                let entities = try viewContext.fetch(fetchRequest)
                if let entity = entities.first {
-                   entity[keyPath: dataFieldKeyPath] = data  // Set the data to the specified field
-                   try viewContext.save()  // Save in the viewContext
+                   entity[keyPath: dataFieldKeyPath] = data 
+                   try viewContext.save()
                }
                DispatchQueue.main.async {
                    completion()
