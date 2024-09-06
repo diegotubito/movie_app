@@ -17,7 +17,7 @@ class TopRatedViewModel: BaseViewModel {
     
     @MainActor
     func fetchTopRatedFromApi() {
-            print("Top Rated From API")
+            print("Top Rated Fetch From API")
             Task { [weak self] in
                 guard let self = self else { return }
                 
@@ -47,7 +47,7 @@ class TopRatedViewModel: BaseViewModel {
     
     @MainActor
     func fetchTopRatedFromCoreData() {
-        print("Top Rated From Core Data")
+        print("Top Rated Fetch From Core Data")
         loadMoviesFromCoreData()
     }
     

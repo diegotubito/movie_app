@@ -41,6 +41,9 @@ struct TopRatedView: View {
         .onAppear {
             loadData()
         }
+        .onChange(of: networkMonitor.isConnected) { oldValue, newValue in
+            loadData()
+        }
     }
     
     private func loadData() {

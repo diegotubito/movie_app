@@ -54,6 +54,9 @@ struct HomeView: View {
         .onAppear {
             loadData()
         }
+        .onChange(of: networkMonitor.isConnected) { oldValue, newValue in
+            loadData()
+        }
     }
     
     @ViewBuilder
