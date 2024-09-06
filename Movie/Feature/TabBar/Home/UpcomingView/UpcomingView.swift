@@ -10,7 +10,8 @@ import SwiftUI
 struct UpcomingView: View {
     @StateObject var viewmodel = UpcomingViewModel()
     @EnvironmentObject var coordinator: Coordinator<HomeScreen>
-
+    @EnvironmentObject var networkMonitor: NetworkMonitor
+    
     var body: some View {
         CustomZStack(coordinator: coordinator, viewmodel: viewmodel) {
             LazyVGrid(
@@ -38,8 +39,12 @@ struct UpcomingView: View {
             
         }
         .onAppear {
-            viewmodel.fetchUpcoming()
+            loadData()
         }
+    }
+    
+    private func loadData() {
+        networkMonitor.isConnected ? viewmodel.fetchUpcomingFromApi() : viewmodel.fetchUpcomingFromCoreData()
     }
 }
 

@@ -9,54 +9,54 @@ import CoreData
 
 class PopularViewModel: BaseViewModel {
     @Published var popularMovies: [PopularMovieModel] = []
-    
-    private let networkMonitor: NetworkMonitor
     private let coreDataManager: CoreDataManager
-    var isPresented = false
     
-    init(networkMonitor: NetworkMonitor = NetworkMonitor()) {
-      
-        self.networkMonitor = networkMonitor
-        self.coreDataManager = CoreDataManager(containerName: "Movie")
+    init(coreDataManager: CoreDataManager = CoreDataManager(containerName: "Movie")) {
+        self.coreDataManager = coreDataManager
     }
     
     @MainActor
-    func fetchPopular() {
-        if networkMonitor.isConnected {
-            print("Loading Popular From API")
-            Task {
-                do {
-                    isLoading = true
-                    let fetchPopularUseCase = FetchPopularUseCase()
-                    let response = try await fetchPopularUseCase.excecute()
-                    coreDataManager.deleteEntities(ofType: Popular.self)
-                    coreDataManager.saveEntities(models: response.results, entityType: Popular.self) { (movieModel, popularEntity) in
-                        popularEntity.id = Int32(movieModel._id)
-                        popularEntity.originalTitle = movieModel.originalTitle
-                        popularEntity.posterPath = movieModel.posterPath
-                    } completion: {
-                        self.loadPopularMoviesFromCoreData()
-                    }
-                    for movie in response.results {
-                        await fetchPoster(for: movie.posterPath, forMovieID: movie._id)
-                    }
-                    isPresented = true
-
-                } catch {
-                    isLoading = false
-                    handleError(error: error, .alert(routeBack: .none))
-                    print(error.localizedDescription)
+    func fetchPopularFromApi() {
+        print("Pupular Fetch From API")
+        Task { [weak self] in
+            guard let self = self else { return }
+            
+            do {
+                isLoading = true
+                let fetchPopularUseCase = FetchPopularUseCase()
+                let response = try await fetchPopularUseCase.excecute()
+                coreDataManager.deleteEntities(ofType: Popular.self)
+                coreDataManager.saveEntities(models: response.results, entityType: Popular.self) { (movieModel, popularEntity) in
+                    popularEntity.id = Int32(movieModel._id)
+                    popularEntity.originalTitle = movieModel.originalTitle
+                    popularEntity.posterPath = movieModel.posterPath
+                } completion: { }
+                for movie in response.results {
+                    await fetchPoster(for: movie.posterPath, forMovieID: movie._id)
                 }
+                self.isLoading = false
+                DispatchQueue.main.async {
+                    self.popularMovies = response.results
+                }
+                
+            } catch {
+                isLoading = false
+                handleError(error: error, .alert(routeBack: .none))
+                print(error.localizedDescription)
             }
-        } else {
-            print("Loading Popular From API")
-            loadPopularMoviesFromCoreData()
         }
+        
+    }
+    
+    func fetchPopularCoreData() {
+        print("Pupular Fetch From Core Data")
+        loadPopularMoviesFromCoreData()
     }
     
     @MainActor
     func fetchPoster(for path: String, forMovieID id: Int) async {
-        Task {
+        Task { [weak self] in
+        guard let self = self else { return }
             do {
                 let fetchPosterUseCase = FetchPosterUseCase()
                 let posterData = try await fetchPosterUseCase.excecute(path: path)
@@ -79,8 +79,8 @@ class PopularViewModel: BaseViewModel {
     
     func loadPopularMoviesFromCoreData() {
         isLoading = true
-        coreDataManager.fetchEntities(ofType: Popular.self) { popularEntities in
-            let movies = popularEntities.map { movieEntity in
+        coreDataManager.fetchEntities(ofType: Popular.self) { entities in
+            let movies = entities.map { movieEntity in
                 PopularMovieModel(
                     _id: Int(movieEntity.id),
                     originalTitle: movieEntity.originalTitle ?? "Unknown Title",

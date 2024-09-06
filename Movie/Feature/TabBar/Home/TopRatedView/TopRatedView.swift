@@ -8,15 +8,10 @@
 import SwiftUI
 
 struct TopRatedView: View {
-    @StateObject var viewmodel: TopRatedViewModel
+    @StateObject var viewmodel = TopRatedViewModel()
     @EnvironmentObject var coordinator: Coordinator<HomeScreen>
     @EnvironmentObject var networkMonitor: NetworkMonitor
    
-    init() {
-        let networkMonitor = NetworkMonitor()
-        _viewmodel = StateObject(wrappedValue: TopRatedViewModel(networkMonitor: networkMonitor))
-    }
-
     var body: some View {
         CustomZStack(coordinator: coordinator, viewmodel: viewmodel) {
             LazyVGrid(
@@ -44,8 +39,12 @@ struct TopRatedView: View {
         }
         
         .onAppear {
-            viewmodel.fetchTopRated()
+            loadData()
         }
+    }
+    
+    private func loadData() {
+        networkMonitor.isConnected ? viewmodel.fetchTopRatedFromApi() : viewmodel.fetchTopRatedFromCoreData()
     }
 }
 

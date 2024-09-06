@@ -9,62 +9,56 @@ import Foundation
 
 class NowPlayingViewModel: BaseViewModel {
     @Published var movies: [NowPlayingModel] = []
-    
-    private let networkMonitor: NetworkMonitor
     private let coreDataManager: CoreDataManager
     
-    init(networkMonitor: NetworkMonitor = NetworkMonitor()) {
-        self.networkMonitor = networkMonitor
-        self.coreDataManager = CoreDataManager(containerName: "Movie")
+    init(coreDataManager: CoreDataManager = CoreDataManager(containerName: "Movie")) {
+        self.coreDataManager = coreDataManager
     }
     
     @MainActor
-    func fetchNowPlaying() {
-        if networkMonitor.isConnected {
-            print("Loading Now Playing From API")
-            Task {
-                do {
-                    isLoading = true
-                    
-                    
-                    let fetchNowPlayingUseCase = FetchNowPlayingUseCase()
-                    let response = try await fetchNowPlayingUseCase.excecute()
-                    
-                    
-                    coreDataManager.deleteEntities(ofType: NowPlaying.self)
-                    coreDataManager.saveEntities(models: response.results, entityType: NowPlaying.self) { (movieModel, popularEntity) in
-                        popularEntity.id = Int32(movieModel._id)
-                        popularEntity.originalTitle = movieModel.originalTitle
-                        popularEntity.posterPath = movieModel.posterPath
-                    } completion: {
-                        self.loadMoviesFromCoreData()
-                    }
-                    for movie in response.results {
-                        await fetchPoster(for: movie.posterPath, forMovieID: movie._id)
-                    }
-                     
-                } catch {
-                    isLoading = false
-                    handleError(error: error, .alert(routeBack: .none))
-                    print(error.localizedDescription)
+    func fetchNowPlayingFromApi() {
+        print("Now Playing Fetch From API")
+        Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                isLoading = true
+                let fetchNowPlayingUseCase = FetchNowPlayingUseCase()
+                let response = try await fetchNowPlayingUseCase.excecute()
+                coreDataManager.deleteEntities(ofType: NowPlaying.self)
+                coreDataManager.saveEntities(models: response.results, entityType: NowPlaying.self) { (movieModel, popularEntity) in
+                    popularEntity.id = Int32(movieModel._id)
+                    popularEntity.originalTitle = movieModel.originalTitle
+                    popularEntity.posterPath = movieModel.posterPath
+                } completion: { }
+                for movie in response.results {
+                    await fetchPoster(for: movie.posterPath, forMovieID: movie._id)
                 }
+                movies = response.results
+                isLoading = false
+            } catch {
+                isLoading = false
+                handleError(error: error, .alert(routeBack: .none))
+                print(error.localizedDescription)
             }
-        } else {
-            print("Loading Upcoming From Core Data")
-            loadMoviesFromCoreData()
         }
+    }
+    
+    func fetchNowPlayingFromCoreData() {
+        print("Now Playing Fetch From Core Data")
+        loadMoviesFromCoreData()
     }
     
     @MainActor
     func fetchPoster(for path: String, forMovieID id: Int) async {
-        Task {
+        Task {  [weak self] in
+            guard let self = self else { return }
             do {
                 let fetchPosterUseCase = FetchPosterUseCase()
                 let posterData = try await fetchPosterUseCase.excecute(path: path)
                 coreDataManager.saveDataForEntity(
-                    ofType: Popular.self,
+                    ofType: NowPlaying.self,
                     entityID: id,
-                    dataFieldKeyPath: \Popular.posterImageData,
+                    dataFieldKeyPath: \NowPlaying.posterImageData,
                     data: posterData
                 ) {
                     if let index = self.movies.firstIndex(where: { $0._id == id }) {
@@ -80,8 +74,8 @@ class NowPlayingViewModel: BaseViewModel {
     
     func loadMoviesFromCoreData() {
         isLoading = true
-        coreDataManager.fetchEntities(ofType: NowPlaying.self) { popularEntities in
-            let movies = popularEntities.map { movieEntity in
+        coreDataManager.fetchEntities(ofType: NowPlaying.self) { entities in
+            let movies = entities.map { movieEntity in
                 NowPlayingModel(
                     _id: Int(movieEntity.id),
                     originalTitle: movieEntity.originalTitle ?? "Unknown Title",

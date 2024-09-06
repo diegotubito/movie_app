@@ -88,7 +88,7 @@ struct SearchView: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 // Movie Title
-                Text(movie.originalTitle ?? "")
+                Text(movie.originalTitle)
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)
                     .lineLimit(1)

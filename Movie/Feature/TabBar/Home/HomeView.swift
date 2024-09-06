@@ -12,6 +12,8 @@ struct HomeView: View {
     
     @State private var selectedSegment: segmentedOptions = .nowPlaying
       
+    @EnvironmentObject var networkMonitor: NetworkMonitor
+    
     enum segmentedOptions: String, CaseIterable, Identifiable {
         case nowPlaying = "Now Playing"
         case upcoming = "Upcoming"
@@ -50,9 +52,7 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            if !popularViewModel.isPresented {
-                popularViewModel.fetchPopular()
-            }
+            loadData()
         }
     }
     
@@ -120,8 +120,13 @@ struct HomeView: View {
             case .topRated:
                 TopRatedView()
             }
+            
         }
         .padding()
+    }
+    
+    private func loadData() {
+        networkMonitor.isConnected ? popularViewModel.fetchPopularFromApi() : popularViewModel.fetchPopularCoreData()
     }
 }
 
