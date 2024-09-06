@@ -35,7 +35,6 @@ class CoreDataManager {
         
         do {
             try viewContext.save()
-            print("\(T.self) entities saved to Core Data")
             DispatchQueue.main.async {
                 completion()
             }
@@ -65,7 +64,6 @@ class CoreDataManager {
         
         do {
             try viewContext.execute(deleteRequest)
-            print("All movies deleted successfully")
         } catch {
             print("Failed to delete all movies: \(error.localizedDescription)")
         }
@@ -105,11 +103,8 @@ extension CoreDataManager {
             let bookmarks = try viewContext.fetch(fetchRequest)
             
             if let existingBookmark = bookmarks.first {
-                // If the bookmark exists, delete it
                 viewContext.delete(existingBookmark)
-                print("Bookmark deleted for movieId: \(detailMovie._id)")
             } else {
-                // If it doesn't exist, create a new bookmark
                 let newBookmark = WatchList(context: viewContext)
                 newBookmark.id = Int32(detailMovie._id)
                 newBookmark.originalTitle = detailMovie.originalTitle
@@ -117,15 +112,12 @@ extension CoreDataManager {
                 newBookmark.voteAverage = detailMovie.voteAverage
                 newBookmark.releaseDate = detailMovie.releaseDate
                 newBookmark.runtime = Int32(detailMovie.runtime)
-                
-                print("Bookmark added for movieId: \(detailMovie._id)")
             }
             
-            // Save the context after modification
             try viewContext.save()
             
             DispatchQueue.main.async {
-                completion(bookmarks.first == nil) // If it didn't exist, now it does (return true), otherwise false
+                completion(bookmarks.first == nil)
             }
         } catch {
             print("Error toggling bookmark for movieId \(detailMovie._id): \(error.localizedDescription)")

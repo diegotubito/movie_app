@@ -54,5 +54,6 @@ struct NowPlayingView: View {
 #Preview {
     NowPlayingView()
         .environmentObject(Coordinator<HomeScreen>())
+        .environmentObject(NetworkMonitor())
 }
 

@@ -8,11 +8,11 @@ import Foundation
 
 public struct ApiRequestConfiguration {
     public var path: String = ""
-    public var method: Method = .get // Default to GET
+    public var method: Method = .get
     public var body: Data? = nil
     public var headers: [String: String] = [:]
     public var queryItems: [QueryModel] = []
-    public var serverType: ServerType = .api // Default to API server
+    public var serverType: ServerType = .api
 
     public struct QueryModel {
         var key: String
@@ -32,7 +32,6 @@ public struct ApiRequestConfiguration {
         case image
     }
 
-    // Fetch the correct base URL from the Info.plist based on the server type
     func getHost() -> String {
         let key: String
         switch serverType {
@@ -48,18 +47,15 @@ public struct ApiRequestConfiguration {
         return serverURL
     }
 
-    // Add custom headers to the request
     public mutating func addCustomHeader(key: String, value: String) {
         headers[key] = value
     }
 
-    // Add query parameters to the request
     public mutating func addQueryItem(key: String, value: String?) {
         let newQuery = QueryModel(key: key, value: value)
         queryItems.append(newQuery)
     }
 
-    // Add request body (for POST, PUT, etc.)
     public mutating func addRequestBody<TRequest>(_ body: TRequest?,
                                                   _ keyEncodingStrategy: JSONEncoder.KeyEncodingStrategy = .useDefaultKeys)
     where TRequest: Encodable {
@@ -68,7 +64,6 @@ public struct ApiRequestConfiguration {
         self.body = try? encoder.encode(body)
     }
     
-    // Construct the full URL with the query parameters
     public func getUrl() -> URL? {
         guard var urlComponents = URLComponents(string: getHost()) else {
             return nil

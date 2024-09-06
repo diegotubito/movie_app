@@ -71,7 +71,6 @@ struct SearchView: View {
     @ViewBuilder
     func cellView(movie: SearchModel) -> some View {
         HStack(alignment: .top, spacing: 16) {
-            // Movie Poster
             if let posterImage = movie.posterImageData {
                 Image(uiImage: UIImage(data: posterImage)!)
                     .resizable()
@@ -87,7 +86,6 @@ struct SearchView: View {
             }
             
             VStack(alignment: .leading, spacing: 4) {
-                // Movie Title
                 Text(movie.originalTitle)
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)

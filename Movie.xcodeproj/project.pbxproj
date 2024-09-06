@@ -63,8 +63,6 @@
 		F14D2EE02C892AEC0039AC17 /* SearchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EDF2C892AEC0039AC17 /* SearchEntity.swift */; };
 		F14D2EE22C892AF20039AC17 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EE12C892AF20039AC17 /* SearchModel.swift */; };
 		F14D2EE82C8930E20039AC17 /* Movie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EE62C8930E20039AC17 /* Movie.xcdatamodeld */; };
-		F14D2EEB2C8931410039AC17 /* MovieRepositoryCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EEA2C8931410039AC17 /* MovieRepositoryCoreData.swift */; };
-		F14D2EEE2C8932E40039AC17 /* PopularRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EED2C8932E40039AC17 /* PopularRecordModel.swift */; };
 		F14D2EF72C894B870039AC17 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EF62C894B870039AC17 /* NetworkMonitor.swift */; };
 		F14D2EFA2C894E150039AC17 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EF92C894E150039AC17 /* CoreDataManager.swift */; };
 		F14D2EFD2C8974280039AC17 /* CustomZStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D2EFC2C8974280039AC17 /* CustomZStack.swift */; };
@@ -161,8 +159,6 @@
 		F14D2EDF2C892AEC0039AC17 /* SearchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEntity.swift; sourceTree = "<group>"; };
 		F14D2EE12C892AF20039AC17 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		F14D2EE72C8930E20039AC17 /* Movie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movie.xcdatamodel; sourceTree = "<group>"; };
-		F14D2EEA2C8931410039AC17 /* MovieRepositoryCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryCoreData.swift; sourceTree = "<group>"; };
-		F14D2EED2C8932E40039AC17 /* PopularRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRecordModel.swift; sourceTree = "<group>"; };
 		F14D2EF02C8934B00039AC17 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F14D2EF62C894B870039AC17 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		F14D2EF92C894E150039AC17 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -394,7 +390,6 @@
 		F14D2E9A2C88DB5D0039AC17 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				F14D2EE92C8931150039AC17 /* CoreDataSource */,
 				F14D2E9D2C88DBA60039AC17 /* ApiSource */,
 			);
 			path = DataSource;
@@ -497,23 +492,6 @@
 				F14D2EE12C892AF20039AC17 /* SearchModel.swift */,
 			);
 			path = Search;
-			sourceTree = "<group>";
-		};
-		F14D2EE92C8931150039AC17 /* CoreDataSource */ = {
-			isa = PBXGroup;
-			children = (
-				F14D2EEC2C8932C70039AC17 /* Popular */,
-				F14D2EEA2C8931410039AC17 /* MovieRepositoryCoreData.swift */,
-			);
-			path = CoreDataSource;
-			sourceTree = "<group>";
-		};
-		F14D2EEC2C8932C70039AC17 /* Popular */ = {
-			isa = PBXGroup;
-			children = (
-				F14D2EED2C8932E40039AC17 /* PopularRecordModel.swift */,
-			);
-			path = Popular;
 			sourceTree = "<group>";
 		};
 		F14D2EEF2C8934B00039AC17 /* Frameworks */ = {
@@ -749,7 +727,6 @@
 				F14D2EAA2C89116F0039AC17 /* ApiNetworkMock.swift in Sources */,
 				F14D2E792C88C9720039AC17 /* HomeView.swift in Sources */,
 				F14D2E402C88C39A0039AC17 /* SplashView.swift in Sources */,
-				F14D2EEE2C8932E40039AC17 /* PopularRecordModel.swift in Sources */,
 				F14D2F172C8A13DC0039AC17 /* PlayMovieViewModel.swift in Sources */,
 				F14D2ED42C8927070039AC17 /* FetchDetailUseCase.swift in Sources */,
 				F14D2E962C88D7240039AC17 /* ApiConfig.swift in Sources */,
@@ -781,7 +758,6 @@
 				F14D2E862C88D0EC0039AC17 /* Font+Extension.swift in Sources */,
 				F14D2EAE2C8912D50039AC17 /* PosterEntity.swift in Sources */,
 				F14D2E9F2C88DC760039AC17 /* PopularMovieModel.swift in Sources */,
-				F14D2EEB2C8931410039AC17 /* MovieRepositoryCoreData.swift in Sources */,
 				F14D2EBF2C8926690039AC17 /* FetchNowPlayingUseCase.swift in Sources */,
 				F14D2EA82C88E3620039AC17 /* FetchPosterUseCase.swift in Sources */,
 				F14D2E3E2C88C39A0039AC17 /* MovieApp.swift in Sources */,

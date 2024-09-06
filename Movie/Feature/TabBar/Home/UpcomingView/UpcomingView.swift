@@ -54,5 +54,6 @@ struct UpcomingView: View {
 #Preview {
     UpcomingView()
         .environmentObject(Coordinator<HomeScreen>())
+        .environmentObject(NetworkMonitor())
 }
 

@@ -54,4 +54,5 @@ struct TopRatedView: View {
 #Preview {
     TopRatedView()
         .environmentObject(Coordinator<HomeScreen>())
+        .environmentObject(NetworkMonitor())
 }

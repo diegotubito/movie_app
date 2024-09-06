@@ -24,17 +24,11 @@ final class MovieUITests: XCTestCase {
     }
 
     func testSplashAndTransitionToHome() throws {
-        // Verificar que el SplashView esté visible
-        let splashText = app.staticTexts["Splash View"]
+        let splashText = app.staticTexts["Play Movies"]
         XCTAssertTrue(splashText.waitForExistence(timeout: 3), "The SplashView should be visible")
 
-        // Esperar a que el TabBarView aparezca
         let homeTabBar = app.tabBars.buttons["Home"]
         XCTAssertTrue(homeTabBar.waitForExistence(timeout: 5), "The TabBarView should appear after the splash")
         
-        // Verificar que la transición al Home haya ocurrido
-    //    homeTabBar.tap()
-    //    let homeText = app.staticTexts["Home View"]
-    //    XCTAssertTrue(homeText.exists, "The Home View should be visible")
     }
 }
